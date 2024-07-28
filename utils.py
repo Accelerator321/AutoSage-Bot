@@ -1,13 +1,13 @@
 from dotenv import load_dotenv
 import os
 from langchain_google_genai import GoogleGenerativeAI
-from langchain.document_loaders import UnstructuredURLLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.prompts import PromptTemplate
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import LLMChain
 import re
+from langchain_community.document_loaders import UnstructuredURLLoader
+from langchain_community.vectorstores import FAISS
+from langchain_core.prompts import PromptTemplate
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 load_dotenv()
 
@@ -31,8 +31,8 @@ def generate_answerbook(urls, element):
 
   splitter = RecursiveCharacterTextSplitter(
       separators=['\n', '.', " "],
-      chunk_size=200,
-      chunk_overlap=0,
+      chunk_size=500,
+      chunk_overlap=100,
   )
   element.text("Splitting Text...✔️✔️")
   doc = splitter.split_documents(data)
