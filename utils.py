@@ -50,7 +50,7 @@ def get_answer(query, db, element):
     element.subheader("Generating Answer.....✔️")
     res = chain.invoke({
         "query": query,
-        "dataset": db.similarity_search(query, k=4)
+        "dataset": db.similarity_search(query, k=8)
     })
 
     element.subheader("Answer Generated ✔️✔️")
